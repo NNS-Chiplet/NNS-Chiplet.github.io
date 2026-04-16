@@ -24,18 +24,18 @@ window.SiteData = {
   ],
   projects: {
     current: [
-      {
-        title: "交换Chiplet片上网络前沿研究",
-        url: "#",
-        summary: "A project funded by Huawei, exploring the possibilities and challenges of adopting 3D-intergration / Wafer-scale integration for future switching chips."
-      }
+    //   {
+    //     title: "交换Chiplet片上网络前沿研究",
+    //     url: "#",
+    //     summary: "A project funded by Huawei, exploring the possibilities and challenges of adopting 3D-intergration / Wafer-scale integration for future switching chips."
+    //   }
     ],
     past: [
-      {
-        title: "下一代分布式芯片流量管理合作项目",
-        url: "#",
-        summary: "A project funded by Huawei, focusing on traffic management for chiplet-based switching chips."
-      }
+    //   {
+    //     title: "下一代分布式芯片流量管理合作项目",
+    //     url: "#",
+    //     summary: "A project funded by Huawei, focusing on traffic management for chiplet-based switching chips."
+    //   }
     ]
   },
   highlights: [
