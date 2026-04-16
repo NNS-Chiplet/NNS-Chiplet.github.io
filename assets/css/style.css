@@ -1,0 +1,268 @@
+:root {
+  --bg: #f4f2ed;
+  --paper: #fffdf7;
+  --ink: #1d1f24;
+  --muted: #626774;
+  --line: #d8d4ca;
+  --brand: #9a1f40;
+  --brand-soft: #f8e8ee;
+  --accent: #004d61;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(29, 31, 36, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  color: var(--ink);
+  line-height: 1.65;
+  background:
+    radial-gradient(circle at 10% 10%, #fff8fa 0, transparent 35%),
+    radial-gradient(circle at 90% 20%, #e8f5f8 0, transparent 30%),
+    var(--bg);
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Literata", Georgia, serif;
+  line-height: 1.2;
+  margin-top: 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.wrap {
+  width: min(1080px, 92vw);
+  margin: 0 auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  backdrop-filter: blur(8px);
+  background: rgba(244, 242, 237, 0.84);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 78px;
+  gap: 18px;
+}
+
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: var(--brand-soft);
+  color: var(--brand);
+  font-weight: 700;
+}
+
+.brand-text {
+  display: grid;
+  gap: 1px;
+}
+
+.brand-text small {
+  color: var(--muted);
+}
+
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.main-nav a {
+  padding: 5px 10px;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+}
+
+.main-nav a[aria-current="page"],
+.main-nav a:hover {
+  background: var(--paper);
+  text-decoration: none;
+}
+
+.hero {
+  padding: 72px 0 48px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.eyebrow {
+  color: var(--brand);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.lead {
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+.hero-actions {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-solid {
+  color: #ffffff;
+  background: var(--brand);
+}
+
+.btn-ghost {
+  color: var(--accent);
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.hero-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+
+.quick-links {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.panel {
+  padding: 46px 0;
+}
+
+.panel.alt {
+  background: rgba(255, 255, 255, 0.45);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.item-list,
+.logo-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.item-list li,
+.logo-list li {
+  padding-left: 4px;
+}
+
+.news-grid,
+.people-groups {
+  display: grid;
+  gap: 22px;
+}
+
+.news-year,
+.people-group {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 20px;
+}
+
+.news-year h3,
+.people-group h2 {
+  margin-bottom: 10px;
+}
+
+.news-year ul,
+.people-group ul {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+}
+
+.subpage-main {
+  min-height: calc(100vh - 160px);
+}
+
+.subpage-hero {
+  padding: 52px 0 18px;
+}
+
+.site-footer {
+  margin-top: 20px;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.footer-grid {
+  padding: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+}
+
+@media (max-width: 860px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-wrap {
+    align-items: flex-start;
+    padding: 12px 0;
+    flex-direction: column;
+  }
+}
