@@ -23,7 +23,55 @@ body {
 
 body {
   font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
-  color: var(--ink);
+  color:/* Brand logo in header */
+.brand-logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Recruitment section */
+.recruitment-banner {
+  background: linear-gradient(135deg, var(--brand-soft) 0%, rgba(255, 237, 245, 0.6) 100%);
+  border-left: 4px solid var(--brand);
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.recruitment-banner h2 {
+  color: var(--brand);
+  margin-top: 0;
+}
+
+.recruitment-banner p {
+  margin: 12px 0;
+  line-height: 1.7;
+}
+
+.recruitment-list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.recruitment-list li {
+  background: white;
+  border: 1px solid var(--brand);
+  color: var(--brand);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.recruitment-contact {
+  font-size: 0.95rem;
+  color: var(--brand);
+  font-weight: 500;
+}ink);
   line-height: 1.65;
   background:
     radial-gradient(circle at 10% 10%, #fff8fa 0, transparent 35%),
@@ -122,7 +170,7 @@ a:hover {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 2fr;
   gap: 24px;
 }
 
@@ -172,6 +220,7 @@ a:hover {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 22px;
+  order: -1;
 }
 
 .quick-links {
@@ -246,6 +295,11 @@ a:hover {
   background: var(--paper);
 }
 
+.footer-muted {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
 .footer-grid {
   padding: 20px 0;
   display: flex;
@@ -265,4 +319,163 @@ a:hover {
     padding: 12px 0;
     flex-direction: column;
   }
+}
+
+/* People cards */
+.people-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.person-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.person-photo {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  flex-shrink: 0;
+}
+
+.person-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.person-info a {
+  display: block;
+  font-weight: 500;
+}
+
+.person-role {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* Publications */
+.pub-list {
+  list-style: disc;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pub-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pub-title {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.pub-authors {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.pub-venue {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.pub-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.pub-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border: 1.5px solid var(--accent);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.pub-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Hero logo */
+.hero-logo {
+  max-height: 48px;
+  max-width: 160px;
+  width: auto;
+  display: block;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+/* Brand logo in header */
+.brand-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Recruitment section */
+.recruitment-banner {
+  background: linear-gradient(135deg, var(--brand-soft) 0%, rgba(255, 237, 245, 0.6) 100%);
+  border-left: 4px solid var(--brand);
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.recruitment-banner h2 {
+  color: var(--brand);
+  margin-top: 0;
+}
+
+.recruitment-banner p {
+  margin: 12px 0;
+  line-height: 1.7;
+}
+
+.recruitment-list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.recruitment-list li {
+  background: white;
+  border: 1px solid var(--brand);
+  color: var(--brand);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.recruitment-contact {
+  font-size: 0.95rem;
+  color: var(--brand);
+  font-weight: 500;
 }

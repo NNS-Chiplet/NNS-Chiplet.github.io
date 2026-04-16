@@ -11,6 +11,16 @@
     node.textContent = String(new Date().getFullYear());
   }
 
+  function setLastModified() {
+    var node = byId("last-modified");
+    if (!node) return;
+    var d = new Date(document.lastModified);
+    var y = d.getFullYear();
+    var m = String(d.getMonth() + 1).padStart(2, "0");
+    var day = String(d.getDate()).padStart(2, "0");
+    node.textContent = y + "-" + m + "-" + day;
+  }
+
   function toListItemWithLink(itemText, href) {
     var li = document.createElement("li");
     var a = document.createElement("a");
@@ -118,15 +128,32 @@
       section.appendChild(h2);
 
       var ul = document.createElement("ul");
+      ul.className = "people-list";
       list.forEach(function (person) {
         var li = document.createElement("li");
+        li.className = "person-card";
+
+        if (person.photo) {
+          var img = document.createElement("img");
+          img.src = person.photo;
+          img.alt = person.name;
+          img.className = "person-photo";
+          li.appendChild(img);
+        }
+
+        var info = document.createElement("div");
+        info.className = "person-info";
         var a = document.createElement("a");
         a.href = person.url || "#";
         a.textContent = person.name;
-        li.appendChild(a);
+        info.appendChild(a);
         if (person.role) {
-          li.appendChild(document.createTextNode(" - " + person.role));
+          var span = document.createElement("span");
+          span.className = "person-role";
+          span.textContent = person.role;
+          info.appendChild(span);
         }
+        li.appendChild(info);
         ul.appendChild(li);
       });
 
@@ -152,15 +179,63 @@
         wrapper.appendChild(title);
 
         var ul = document.createElement("ul");
+        ul.className = "pub-list";
         data.publications[year].forEach(function (paper) {
           var li = document.createElement("li");
-          var a = document.createElement("a");
-          a.href = paper.url || "#";
-          a.textContent = paper.title;
-          li.appendChild(a);
-          if (paper.venue) {
-            li.appendChild(document.createTextNode(" (" + paper.venue + ")"));
+          li.className = "pub-item";
+
+          // Title
+          var titleEl = document.createElement("div");
+          titleEl.className = "pub-title";
+          titleEl.textContent = paper.title;
+          li.appendChild(titleEl);
+
+          // Authors
+          if (Array.isArray(paper.authors) && paper.authors.length > 0) {
+            var authorsEl = document.createElement("div");
+            authorsEl.className = "pub-authors";
+            paper.authors.forEach(function (author, idx) {
+              if (idx > 0) {
+                authorsEl.appendChild(document.createTextNode(", "));
+              }
+              if (author === paper.firstAuthor) {
+                var u = document.createElement("u");
+                u.textContent = author;
+                authorsEl.appendChild(u);
+              } else {
+                authorsEl.appendChild(document.createTextNode(author));
+              }
+            });
+            li.appendChild(authorsEl);
           }
+
+          // Venue
+          if (paper.venue) {
+            var venueEl = document.createElement("div");
+            venueEl.className = "pub-venue";
+            venueEl.textContent = paper.venue;
+            li.appendChild(venueEl);
+          }
+
+          // Action buttons
+          var actions = document.createElement("div");
+          actions.className = "pub-actions";
+          [
+            { key: "pdf",    icon: "📄", label: "PDF"    },
+            { key: "slides", icon: "📊", label: "Slides" },
+            { key: "code",   icon: "💻", label: "Code"   }
+          ].forEach(function (btn) {
+            if (!paper[btn.key]) return;
+            var a = document.createElement("a");
+            a.href = paper[btn.key];
+            a.className = "pub-btn";
+            a.target = "_blank";
+            a.rel = "noopener";
+            a.textContent = btn.icon + " " + btn.label;
+            actions.appendChild(a);
+          });
+          if (actions.childElementCount > 0) li.appendChild(actions);
+
           ul.appendChild(li);
         });
 
@@ -229,5 +304,6 @@
   }
 
   setCopyrightYear();
+  setLastModified();
   runByPage();
 })();

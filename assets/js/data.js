@@ -61,18 +61,19 @@ window.SiteData = {
       {
         name: "Fengyuan Ren",
         role: "Professor, Leader of NNS group and NNS-Chiplet team",
-        url: "#"
+        url: "https://www.cs.tsinghua.edu.cn/csen/info/1309/4350.htm",
+        photo: "./assets/images/Prof_Ren.jpg"
       }
     ],
     phd: [
       {
         name: "Yang Zhang",
-        role: "PhD Student",
+        role: "PhD Student(2022-)",
         url: "#"
       },
       {
         name: "Xu Wang",
-        role: "PhD Student",
+        role: "PhD Student(2023-)",
         url: "#"
       }
     ],
@@ -83,13 +84,19 @@ window.SiteData = {
     "2026": [
       {
         title: "CrediX: A Credit-driven Distributed Buffer Management for Large-scale Switching Chips",
+        authors: ["Xu Wang", "Yang Zhang", "Danfeng Shan", "Fengyuan Ren"],
         venue: "DAC 2026",
-        url: "#"
+        pdf: "./assets/pdf/DAC26_CrediX.pdf",
+        slides: "",
+        code: ""
       },
       {
         title: "Q-StaR: A Quasi-Static Routing Scheme for NoCs",
+        authors: ["Yang Zhang", "Xu Wang", "Fengyuan Ren"],
         venue: "Arxiv",
-        url: "https://arxiv.org/abs/2603.10637"
+        pdf: "https://arxiv.org/abs/2603.10637",
+        slides: "",
+        code: ""
       }
     ],
   },
