@@ -59,7 +59,7 @@ window.SiteData = {
   people: {
     faculty: [
       {
-        name: "Prof. Fengyuan Ren",
+        name: "Fengyuan Ren",
         role: "Professor, Leader of NNS group and NNS-Chiplet team",
         url: "#"
       }
