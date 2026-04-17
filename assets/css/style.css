@@ -23,55 +23,7 @@ body {
 
 body {
   font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
-  color:/* Brand logo in header */
-.brand-logo {
-  height: 32px;
-  width: auto;
-  object-fit: contain;
-  display: block;
-}
-
-/* Recruitment section */
-.recruitment-banner {
-  background: linear-gradient(135deg, var(--brand-soft) 0%, rgba(255, 237, 245, 0.6) 100%);
-  border-left: 4px solid var(--brand);
-  padding: 24px;
-  border-radius: 8px;
-}
-
-.recruitment-banner h2 {
-  color: var(--brand);
-  margin-top: 0;
-}
-
-.recruitment-banner p {
-  margin: 12px 0;
-  line-height: 1.7;
-}
-
-.recruitment-list {
-  list-style: none;
-  padding-left: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin: 16px 0;
-}
-
-.recruitment-list li {
-  background: white;
-  border: 1px solid var(--brand);
-  color: var(--brand);
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-weight: 500;
-}
-
-.recruitment-contact {
-  font-size: 0.95rem;
-  color: var(--brand);
-  font-weight: 500;
-}ink);
+  color: var(--ink);
   line-height: 1.65;
   background:
     radial-gradient(circle at 10% 10%, #fff8fa 0, transparent 35%),
@@ -170,7 +122,7 @@ a:hover {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 1fr;
   gap: 24px;
 }
 
@@ -220,7 +172,6 @@ a:hover {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 22px;
-  order: -1;
 }
 
 .quick-links {

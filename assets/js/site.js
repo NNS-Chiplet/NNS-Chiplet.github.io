@@ -21,12 +21,28 @@
     node.textContent = y + "-" + m + "-" + day;
   }
 
+  function isClickableUrl(url) {
+    if (typeof url !== "string") return false;
+    var normalized = url.trim();
+    return normalized !== "" && normalized !== "#";
+  }
+
+  function createLinkOrText(text, href) {
+    if (isClickableUrl(href)) {
+      var a = document.createElement("a");
+      a.href = href.trim();
+      a.textContent = text;
+      return a;
+    }
+
+    var span = document.createElement("span");
+    span.textContent = text;
+    return span;
+  }
+
   function toListItemWithLink(itemText, href) {
     var li = document.createElement("li");
-    var a = document.createElement("a");
-    a.href = href || "#";
-    a.textContent = itemText;
-    li.appendChild(a);
+    li.appendChild(createLinkOrText(itemText, href));
     return li;
   }
 
@@ -36,10 +52,7 @@
 
     list.forEach(function (p) {
       var li = document.createElement("li");
-      var a = document.createElement("a");
-      a.href = p.url || "#";
-      a.textContent = p.title;
-      li.appendChild(a);
+      li.appendChild(createLinkOrText(p.title, p.url));
 
       if (p.summary) {
         li.appendChild(document.createTextNode(" - " + p.summary));
@@ -143,10 +156,7 @@
 
         var info = document.createElement("div");
         info.className = "person-info";
-        var a = document.createElement("a");
-        a.href = person.url || "#";
-        a.textContent = person.name;
-        info.appendChild(a);
+        info.appendChild(createLinkOrText(person.name, person.url));
         if (person.role) {
           var span = document.createElement("span");
           span.className = "person-role";
@@ -259,10 +269,7 @@
 
     data.outreach.forEach(function (item) {
       var li = document.createElement("li");
-      var a = document.createElement("a");
-      a.href = item.url || "#";
-      a.textContent = item.title;
-      li.appendChild(a);
+      li.appendChild(createLinkOrText(item.title, item.url));
       if (item.summary) {
         li.appendChild(document.createTextNode(" - " + item.summary));
       }
