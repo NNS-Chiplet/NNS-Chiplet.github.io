@@ -20,6 +20,10 @@ window.SiteData = {
     {
       title: "Simulation, Modeling, and Benchmarking for Chiplet Systems",
       summary: "Perspectives and tools for evaluating chiplet-based system design and optimization."
+    },
+    {
+      title: "Wafer-scale Integration and 3D-Integration",
+      summary: "Possible evolutionary directions for future chips."
     }
   ],
   projects: {
@@ -44,7 +48,7 @@ window.SiteData = {
       url: "#"
     },
     {
-      title: "Several works are being conducted or submitted for review, covering nearly all aspects of our research interests. Stay tuned!",
+      title: "Several works are in progress or submitted for review, covering nearly all aspects of our listed research interests. Stay tuned!",
       url: "#"
     },
   ],
@@ -86,7 +90,8 @@ window.SiteData = {
         title: "CrediX: A Credit-driven Distributed Buffer Management for Large-scale Switching Chips",
         authors: ["Xu Wang", "Yang Zhang", "Danfeng Shan", "Fengyuan Ren"],
         venue: "DAC 2026",
-        pdf: "./assets/pdf/DAC26_CrediX.pdf",
+        url: "",
+        pdf: "",
         slides: "",
         code: ""
       },
@@ -94,7 +99,8 @@ window.SiteData = {
         title: "Q-StaR: A Quasi-Static Routing Scheme for NoCs",
         authors: ["Yang Zhang", "Xu Wang", "Fengyuan Ren"],
         venue: "Arxiv",
-        pdf: "https://arxiv.org/abs/2603.10637",
+        url: "https://arxiv.org/abs/2603.10637",
+        pdf: "",
         slides: "",
         code: ""
       }

@@ -231,6 +231,7 @@
           var actions = document.createElement("div");
           actions.className = "pub-actions";
           [
+            { key: "url",    icon: "🔗", label: "Link"   },
             { key: "pdf",    icon: "📄", label: "PDF"    },
             { key: "slides", icon: "📊", label: "Slides" },
             { key: "code",   icon: "💻", label: "Code"   }
