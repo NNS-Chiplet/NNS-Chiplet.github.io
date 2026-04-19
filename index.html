@@ -103,12 +103,22 @@
         <p>
           <a href="mailto:zhang-y22@mails.tsinghua.edu.cn">zhang-y22@mails.tsinghua.edu.cn</a><br />
           <span id="copyright-year"></span> All rights reserved.<br />
-          <span class="footer-muted">Last updated: <span id="last-modified"></span></span>
+          <span class="footer-muted">Last updated: <span id="last-modified"></span></span><br />
+          <span class="footer-muted">Page Views: <span id="page-views">…</span></span>
         </p>
       </div>
     </footer>
 
     <script src="./assets/js/data.js"></script>
     <script src="./assets/js/site.js"></script>
+    <script>
+      fetch("https://api.countapi.xyz/hit/nns-chiplet.github.io/visits")
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          var el = document.getElementById("page-views");
+          if (el) el.textContent = data.value.toLocaleString();
+        })
+        .catch(function(){ /* 网络不可达时静默失败 */ });
+    </script>
   </body>
 </html>
