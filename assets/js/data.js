@@ -52,6 +52,13 @@ window.SiteData = {
       url: "#"
     },
   ],
+  articles: [
+    {
+      title: "Why Chiplets Emerged: Scaling Beyond Monolithic Chips",
+      htmlPath: "./Articles/why-chiplets-emerged.html",
+      summary: "Why AI-era demand outpaces monolithic scaling, and how chiplets plus advanced packaging extend system-level growth."
+    }
+  ],
   news: {
     "2026": [
       {

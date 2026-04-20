@@ -430,3 +430,36 @@ a:hover {
   color: var(--brand);
   font-weight: 500;
 }
+
+/* Articles page */
+.article-stack {
+  display: grid;
+  gap: 24px;
+}
+
+.article-entry {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.article-entry h2 {
+  margin-bottom: 6px;
+}
+
+.article-entry h2 a {
+  color: var(--ink);
+}
+
+.article-meta {
+  margin: 0 0 10px;
+  color: var(--muted);
+}
+
+.article-raw-link {
+  display: inline-block;
+  margin-right: 12px;
+  font-size: 0.9rem;
+}

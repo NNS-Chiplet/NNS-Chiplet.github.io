@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Publications | NNS-Chiplet</title>
+    <title>Articles | NNS-Chiplet</title>
+    <meta name="description" content="Blog-style technical articles from the NNS-Chiplet team." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,7 +13,7 @@
     />
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
-  <body data-page="publications">
+  <body data-page="articles">
     <header class="site-header">
       <div class="wrap nav-wrap">
         <a class="brand" href="./index.html">
@@ -25,8 +26,8 @@
         <nav class="main-nav" aria-label="主导航">
           <a href="./people.html">People</a>
           <a href="./projects.html">Projects</a>
-          <a href="./publications.html" aria-current="page">Publications</a>
-          <a href="./articles.html">Articles</a>
+          <a href="./publications.html">Publications</a>
+          <a href="./articles.html" aria-current="page">Articles</a>
         </nav>
       </div>
     </header>
@@ -34,14 +35,15 @@
     <main class="subpage-main">
       <section class="subpage-hero">
         <div class="wrap">
-          <p class="eyebrow">Output</p>
-          <h1>Publications</h1>
+          <p class="eyebrow">Knowledge</p>
+          <h1>Articles</h1>
+          <p class="lead">Browse the article index and open each standalone article page.</p>
         </div>
       </section>
 
       <section class="panel">
         <div class="wrap">
-          <div id="publications-by-year" class="news-grid"></div>
+          <div id="articles-container" class="article-stack"></div>
         </div>
       </section>
     </main>
