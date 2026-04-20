@@ -112,19 +112,19 @@
         <li>Faster communication inside and across devices</li>
         <li>Better interconnect performance in switches and network fabrics</li>
       </ul>
-      <p>This is not a small, temporary bump. Model scale, training data size, and hardware appetite have all grown rapidly over the last decade.</p>
+      <p>This is not a small, temporary bump. Model scale, training data size, and hardware appetite have all grown rapidly over the last decade.<sup>2</sup> A representative large-model case is GPT-4 training at substantial cluster scale and cost.<sup>3</sup></p>
 
       <figure>
         <img src="./figures/chiplet_technology/scaling_law.png" alt="Scaling law trend showing better model capability with more compute, data, and parameters" />
-        <figcaption>Figure 1. Scaling-law behavior: model quality generally improves as compute, data, and parameter count increase.</figcaption>
+        <figcaption>Figure 1. Scaling-law behavior: model quality generally improves as compute, data, and parameter count increase.<sup>1</sup></figcaption>
       </figure>
       <figure>
         <img src="./figures/chiplet_technology/notable_ai_models.png" alt="Historical growth of compute demand for notable AI models" />
-        <figcaption>Figure 2. Compute demand of notable AI models has increased steeply over time.</figcaption>
+        <figcaption>Figure 2. Compute demand of notable AI models has increased steeply over time.<sup>2</sup></figcaption>
       </figure>
       <figure>
         <img src="./figures/chiplet_technology/notable_ai_models_para.png" alt="Historical growth of parameter counts for notable AI models" />
-        <figcaption>Figure 3. Model parameter counts have also expanded rapidly, amplifying infrastructure pressure.</figcaption>
+        <figcaption>Figure 3. Model parameter counts have also expanded rapidly, amplifying infrastructure pressure.<sup>2</sup></figcaption>
       </figure>
 
       <h2>Why monolithic scaling is under pressure</h2>
@@ -135,25 +135,25 @@
         <li>Physical limits are becoming visible at advanced nodes</li>
         <li>Very large dies suffer lower yield</li>
         <li>Reticle limits cap how far a single die can scale</li>
-        <li>Power delivery and thermal constraints become harder at larger scales</li>
+        <li>Power delivery and thermal constraints become harder at larger scales<sup>6</sup></li>
       </ul>
       <p>Even if monolithic design is still viable for many products, its economic and technical risk increases quickly as die size and complexity grow.</p>
 
       <figure>
         <img src="./figures/chiplet_technology/process_node_introduction.png" alt="Process-node evolution timeline showing slower cadence over time" />
-        <figcaption>Figure 4. Process-node progress continues, but the cadence has slowed compared with earlier decades.</figcaption>
+        <figcaption>Figure 4. Process-node progress continues, but the cadence has slowed compared with earlier decades.<sup>4</sup></figcaption>
       </figure>
       <figure>
         <img src="./figures/chiplet_technology/normalized_cost.png" alt="Normalized cost trend showing higher cost at newer process nodes" />
-        <figcaption>Figure 5. Newer nodes are increasingly expensive, raising the economic barrier for pure monolithic scaling.</figcaption>
+        <figcaption>Figure 5. Newer nodes are increasingly expensive, raising the economic barrier for pure monolithic scaling.<sup>4</sup></figcaption>
       </figure>
       <figure>
         <img src="./figures/chiplet_technology/yield.png" alt="Yield comparison indicating larger dies have lower yield and chiplet partitioning can help" />
-        <figcaption>Figure 6. Larger single dies tend to have lower yield; partitioning into chiplets can improve manufacturability.</figcaption>
+        <figcaption>Figure 6. Larger single dies tend to have lower yield; partitioning into chiplets can improve manufacturability.<sup>7</sup></figcaption>
       </figure>
       <figure>
         <img src="./figures/chiplet_technology/reticle_limit.png" alt="Reticle limit diagram constraining maximum monolithic die size" />
-        <figcaption>Figure 7. Reticle limits constrain how far monolithic die size can scale.</figcaption>
+        <figcaption>Figure 7. Reticle limits constrain how far monolithic die size can scale.<sup>4</sup></figcaption>
       </figure>
 
       <h2>Chiplets: a new integration layer</h2>
@@ -193,9 +193,23 @@
       <h2>The core takeaway</h2>
       <p>Chiplets are not a replacement for process scaling. They are a response to the limits of relying on process scaling alone.</p>
       <p>As AI and large-scale computing continue to grow, the winning strategy is increasingly clear: combine transistor innovation, architecture innovation, packaging innovation, and system-level co-design. Chiplets sit at the center of that transition.</p>
+
+      <p class="signature">Draft written by Yang Zhang and Xu Wang (2024/07/23)</p>
+      <p class="signature">Polished and formatted by GPT4.5 mini (2026/04/20)</p>
+      <p class="signature">Latest update (2026/04/20)</p>
+
+      
       <hr class="rule" />
-      <p class="signature">Draft written by Yang Zhang and Xu Wang (2024/07/23).</p>
-      <p class="signature">Polished and formatted by GPT4.5 mini (2026/04/20).</p>
+      <h2>References</h2>
+      <ol>
+        <li>Scaling Laws for Neural Language Models. <a href="https://arxiv.org/abs/2001.08361" target="_blank" rel="noopener">https://arxiv.org/abs/2001.08361</a></li>
+        <li>Epoch AI, "Data on Notable AI Models". Retrieved from <a href="https://epochai.org/data/notable-ai-models" target="_blank" rel="noopener">https://epochai.org/data/notable-ai-models</a>.</li>
+        <li>GPT-4 Technical Report <a href="https://arxiv.org/abs/2303.08774" target="_blank" rel="noopener">https://arxiv.org/abs/2303.08774</a></li>
+        <li>Naffziger, Samuel, et al. "Pioneering chiplet technology and design for the AMD EPYC and Ryzen processor families: Industrial product." 2021 ACM/IEEE ISCA.</li>
+        <li>Wong, H-S. Philip, R. Willard, and Inez Kerr Bell. "IC Technology-What Will the Next Node Offer Us?" 2019 IEEE Hot Chips 31 Symposium.</li>
+        <li>Esmaeilzadeh, Hadi, et al. "Dark silicon and the end of multicore scaling." ISCA 2011.</li>
+        <li><a href="https://en.wikichip.org/wiki/chiplet" target="_blank" rel="noopener">https://en.wikichip.org/wiki/chiplet</a></li>
+      </ol>
     </main>
   </body>
 </html>
