@@ -67,6 +67,23 @@
         font-weight: 700;
         margin-bottom: 0.2rem;
       }
+      .jump-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin-bottom: 1rem;
+        padding: 0.45rem 0.8rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #fff;
+        color: var(--accent);
+        font-size: 0.92rem;
+        font-weight: 700;
+      }
+      .jump-button:hover {
+        text-decoration: none;
+        background: #f9f4ef;
+      }
       .signature {
         color: var(--muted);
         text-align: right;
@@ -81,6 +98,7 @@
   </head>
   <body>
     <main>
+      <a class="jump-button" href="../articles.html">← Back to Articles</a>
       <div class="eyebrow">Knowledge Note</div>
       <h1>Why Chiplets Emerged: Scaling Beyond Monolithic Chips</h1>
       <p class="lead">The modern compute boom, especially in AI, has exposed a painful truth: demand is accelerating faster than traditional chip scaling can deliver. Chiplets emerged as a practical answer to this mismatch.</p>
