@@ -46,22 +46,6 @@
     return li;
   }
 
-  function renderProjectList(id, list) {
-    var root = byId(id);
-    if (!root || !Array.isArray(list)) return;
-
-    list.forEach(function (p) {
-      var li = document.createElement("li");
-      li.appendChild(createLinkOrText(p.title, p.url));
-
-      if (p.summary) {
-        li.appendChild(document.createTextNode(" - " + p.summary));
-      }
-
-      root.appendChild(li);
-    });
-  }
-
   function renderHighlights() {
     var root = byId("research-highlights");
     if (!root || !Array.isArray(data.highlights)) return;
@@ -108,7 +92,7 @@
         var ul = document.createElement("ul");
         data.news[year].forEach(function (n) {
           var li = document.createElement("li");
-          li.textContent = n.date + ": " + n.text;
+          li.textContent = n.text;
           ul.appendChild(li);
         });
 
@@ -255,29 +239,6 @@
       });
   }
 
-  function renderFunding() {
-    var root = byId("funding-list");
-    if (!root || !Array.isArray(data.funding)) return;
-
-    data.funding.forEach(function (f) {
-      root.appendChild(toListItemWithLink(f.name, f.url));
-    });
-  }
-
-  function renderOutreach() {
-    var root = byId("outreach-list");
-    if (!root || !Array.isArray(data.outreach)) return;
-
-    data.outreach.forEach(function (item) {
-      var li = document.createElement("li");
-      li.appendChild(createLinkOrText(item.title, item.url));
-      if (item.summary) {
-        li.appendChild(document.createTextNode(" - " + item.summary));
-      }
-      root.appendChild(li);
-    });
-  }
-
   function normalizePath(path) {
     return String(path || "").replace(/\\/g, "/");
   }
@@ -384,15 +345,8 @@
 
     if (page === "home") {
       renderResearchInterests();
-      renderProjectList("current-projects", data.projects && data.projects.current);
-      renderProjectList("past-projects", data.projects && data.projects.past);
       renderHighlights();
       renderNews("news-by-year");
-    }
-
-    if (page === "projects") {
-      renderProjectList("all-current-projects", data.projects && data.projects.current);
-      renderProjectList("all-past-projects", data.projects && data.projects.past);
     }
 
     if (page === "people") {
@@ -401,14 +355,6 @@
 
     if (page === "publications") {
       renderPublications();
-    }
-
-    if (page === "funding") {
-      renderFunding();
-    }
-
-    if (page === "outreach") {
-      renderOutreach();
     }
 
     if (page === "articles") {

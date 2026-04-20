@@ -26,23 +26,11 @@ window.SiteData = {
       summary: "Possible evolutionary directions for future chips."
     }
   ],
-  projects: {
-    current: [
-    //   {
-    //     title: "交换Chiplet片上网络前沿研究",
-    //     url: "#",
-    //     summary: "A project funded by Huawei, exploring the possibilities and challenges of adopting 3D-intergration / Wafer-scale integration for future switching chips."
-    //   }
-    ],
-    past: [
-    //   {
-    //     title: "下一代分布式芯片流量管理合作项目",
-    //     url: "#",
-    //     summary: "A project funded by Huawei, focusing on traffic management for chiplet-based switching chips."
-    //   }
-    ]
-  },
   highlights: [
+    {
+      title: "We're continously archiving our knowledge and insights on chiplet systems, refer to the Articles section for more details!",
+      url: "articles.html"
+    },
     {
       title: "The open source of a Chiplet-specific Simulation Platform based on BookSim2.0 is on the way!",
       url: "#"
@@ -62,7 +50,6 @@ window.SiteData = {
   news: {
     "2026": [
       {
-        date: "2026-mm-dd",
         text: "Xu Wang's paper on buffer management accepted to DAC 2026.",
       }
     ]
@@ -80,12 +67,12 @@ window.SiteData = {
       {
         name: "Yang Zhang",
         role: "PhD Student(2022-)",
-        url: "#"
+        url: ""
       },
       {
         name: "Xu Wang",
         role: "PhD Student(2023-)",
-        url: "#"
+        url: ""
       }
     ],
     alumni: [
@@ -113,14 +100,4 @@ window.SiteData = {
       }
     ],
   },
-  funding: [
-    { name: "", url: "" }
-  ],
-  outreach: [
-    {
-      title: "",
-      url: "#",
-      summary: ""
-    },
-  ]
 };
