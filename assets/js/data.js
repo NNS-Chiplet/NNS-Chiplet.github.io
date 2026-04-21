@@ -45,6 +45,11 @@ window.SiteData = {
       title: "Why Chiplets Emerged: Scaling Beyond Monolithic Chips",
       htmlPath: "./Articles/why-chiplets-emerged.html",
       summary: "Why AI-era demand outpaces monolithic scaling, and how chiplets plus advanced packaging extend system-level growth."
+    },
+    {
+      title: "Chiplets in Practice: Scaling Limits, D2D Links, and Shipping Products",
+      htmlPath: "./Articles/chiplets-in-practice.html",
+      summary: "A practical rewrite of the chiplet notes, covering design metrics, die-to-die links, packaging, and real CPU, GPU, and AI accelerator examples."
     }
   ],
   news: {
