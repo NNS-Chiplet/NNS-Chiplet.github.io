@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Why Chiplets Emerged: Scaling Beyond Monolithic Chips</title>
-    <meta name="description" content="A blog-style explanation of why chiplets emerged as monolithic scaling slowed." />
+    <meta name="description" content="A professional overview of why chiplets emerged, with emphasis on networking, microarchitecture, and advanced packaging constraints." />
     <style>
       :root {
         --bg: #f6f2ea;
@@ -40,6 +40,13 @@
       h2 { margin-top: 2rem; font-size: 1.45rem; }
       p, li { font-size: 1.02rem; }
       .lead { color: var(--muted); max-width: 72ch; }
+      .callout {
+        margin: 1.2rem 0;
+        padding: 0.9rem 1rem;
+        border-left: 4px solid var(--accent);
+        background: #f9f4ef;
+        border-radius: 8px;
+      }
       ul { padding-left: 1.25rem; }
       figure {
         margin: 1.4rem 0;
@@ -47,6 +54,29 @@
         border: 1px solid var(--line);
         border-radius: 14px;
         background: #fff;
+      }
+      .figure-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        align-items: start;
+      }
+      .figure-grid figure {
+        margin: 1rem 0;
+      }
+      .subfigure {
+        margin: 1rem 0;
+      }
+      .subfigure .subcaption {
+        margin-top: 0.7rem;
+        color: var(--muted);
+        font-size: 0.86rem;
+        text-align: center;
+      }
+      @media (max-width: 820px) {
+        .figure-grid {
+          grid-template-columns: 1fr;
+        }
       }
       img {
         display: block;
@@ -101,102 +131,131 @@
       <a class="jump-button" href="../articles.html">← Back to Articles</a>
       <div class="eyebrow">Knowledge Note</div>
       <h1>Why Chiplets Emerged: Scaling Beyond Monolithic Chips</h1>
-      <p class="lead">The modern compute boom, especially in AI, has exposed a painful truth: demand is accelerating faster than traditional chip scaling can deliver. Chiplets emerged as a practical answer to this mismatch.</p>
-      <p>The semiconductor industry spent decades relying on transistor shrinking and larger monolithic dies to raise performance. That approach still matters, but it no longer carries the full load by itself. As AI systems grew, three limits became obvious at once: workload demand rose sharply, process-node progress slowed, and large-die economics became harder to justify.</p>
+      <p class="lead">The AI era has made one trend unmistakable: system-level demand is scaling faster than monolithic silicon can economically and physically sustain. Chiplets emerged as an engineering response to that widening gap.</p>
+      <p>For decades, performance gains mostly came from transistor scaling and larger single dies. That path still matters, but it is no longer sufficient by itself. As AI systems expanded, three constraints converged: workload demand accelerated, process-node scaling slowed, and the risk profile of very large dies worsened.</p>
 
-      <h2>The demand curve changed</h2>
-      <p>AI workloads are now driving a new wave of system requirements:</p>
+      <h2>Demand Surge Across Compute, Memory, and Fabric</h2>
+      <p>Modern AI workloads are pushing every major subsystem simultaneously:</p>
       <ul>
-        <li>More raw compute for training and inference</li>
-        <li>Larger memory capacity and higher memory bandwidth</li>
-        <li>Faster communication inside and across devices</li>
-        <li>Better interconnect performance in switches and network fabrics</li>
+        <li>Higher compute throughput for both training and inference</li>
+        <li>Larger memory capacity and substantially higher memory bandwidth</li>
+        <li>Higher-performance interconnects in package, board, and cluster fabrics</li>
       </ul>
-      <p>This is not a small, temporary bump. Model scale, training data size, and hardware appetite have all grown rapidly over the last decade.<sup>2</sup> A representative large-model case is GPT-4 training at substantial cluster scale and cost.<sup>3</sup></p>
+      <p>This is not a temporary spike. Model scale, training data volume, and infrastructure footprint have all grown sharply over the last decade.<sup>2</sup> One representative example is GPT-4 era training at massive cluster scale and cost (25,000 NVIDIA A100 GPUs over 2,280 hours, with cost estimates above $40 million).<sup>3</sup></p>
 
       <figure>
         <img src="./figures/why-chiplets-emerged/scaling_law.png" alt="Scaling law trend showing better model capability with more compute, data, and parameters" />
-        <figcaption>Figure 1. Scaling-law behavior: model quality generally improves as compute, data, and parameter count increase.<sup>1</sup></figcaption>
+        <figcaption>Figure 1. Scaling-law: model quality generally improves as compute, data, and parameter count increase.<sup>1</sup></figcaption>
       </figure>
       <figure>
-        <img src="./figures/why-chiplets-emerged/notable_ai_models.png" alt="Historical growth of compute demand for notable AI models" />
-        <figcaption>Figure 2. Compute demand of notable AI models has increased steeply over time.<sup>2</sup></figcaption>
-      </figure>
-      <figure>
-        <img src="./figures/why-chiplets-emerged/notable_ai_models_para.png" alt="Historical growth of parameter counts for notable AI models" />
-        <figcaption>Figure 3. Model parameter counts have also expanded rapidly, amplifying infrastructure pressure.<sup>2</sup></figcaption>
+        <div class="figure-grid">
+          <div class="subfigure">
+            <img src="./figures/why-chiplets-emerged/notable_ai_models.png" alt="Historical growth of compute demand for notable AI models" />
+            <p class="subcaption">(a) Training compute</p>
+          </div>
+          <div class="subfigure">
+            <img src="./figures/why-chiplets-emerged/notable_ai_models_para.png" alt="Historical growth of parameter counts for notable AI models" />
+            <p class="subcaption">(b) Number of parameters</p>
+          </div>
+        </div>
+        <figcaption>Figure 2. Historical scaling trends in notable AI models across compute demand and parameter count.<sup>2</sup></figcaption>
       </figure>
 
-      <h2>Why monolithic scaling is under pressure</h2>
-      <p>Classic Moore-style progress is slowing down in several ways:</p>
+      <h2>Monolithic Scaling is Under Pressure</h2>
+      <p>As Moore's law slows, scaling a single large die becomes harder to sustain technically and economically:</p>
       <ul>
-        <li>Process node transitions are harder and slower</li>
-        <li>New nodes are significantly more expensive per step</li>
-        <li>Physical limits are becoming visible at advanced nodes</li>
-        <li>Very large dies suffer lower yield</li>
-        <li>Reticle limits cap how far a single die can scale</li>
-        <li>Power delivery and thermal constraints become harder at larger scales<sup>6</sup></li>
+        <li>Node transitions are slower, costlier, and more complex</li>
+        <li>Leading-edge process adoption increases development and mask cost</li>
+        <li>Physical limits become more visible at advanced geometries</li>
+        <li>Very large dies experience lower yield and larger cost variance</li>
+        <li>Reticle limits constrain maximum monolithic die area</li>
+        <li>Timing closure, power delivery, thermals, and validation complexity all increase<sup>6</sup></li>
       </ul>
-      <p>Even if monolithic design is still viable for many products, its economic and technical risk increases quickly as die size and complexity grow.</p>
+      <p>Monolithic design remains viable for many products, but risk increases quickly with die size and complexity, especially for high-performance compute parts.</p>
 
-      <figure>
-        <img src="./figures/why-chiplets-emerged/process_node_introduction.png" alt="Process-node evolution timeline showing slower cadence over time" />
-        <figcaption>Figure 4. Process-node progress continues, but the cadence has slowed compared with earlier decades.<sup>4</sup></figcaption>
-      </figure>
-      <figure>
-        <img src="./figures/why-chiplets-emerged/normalized_cost.png" alt="Normalized cost trend showing higher cost at newer process nodes" />
-        <figcaption>Figure 5. Newer nodes are increasingly expensive, raising the economic barrier for pure monolithic scaling.<sup>4</sup></figcaption>
-      </figure>
-      <figure>
-        <img src="./figures/why-chiplets-emerged/yield.png" alt="Yield comparison indicating larger dies have lower yield and chiplet partitioning can help" />
-        <figcaption>Figure 6. Larger single dies tend to have lower yield; partitioning into chiplets can improve manufacturability.<sup>7</sup></figcaption>
-      </figure>
-      <figure>
-        <img src="./figures/why-chiplets-emerged/reticle_limit.png" alt="Reticle limit diagram constraining maximum monolithic die size" />
-        <figcaption>Figure 7. Reticle limits constrain how far monolithic die size can scale.<sup>4</sup></figcaption>
-      </figure>
+      <div class="figure-grid">
+        <figure>
+          <img src="./figures/why-chiplets-emerged/process_node_introduction.png" alt="Process-node evolution timeline showing slower cadence over time" />
+          <figcaption>Figure 3. Process-node progress continues, but the cadence has slowed compared with earlier decades.<sup>4</sup></figcaption>
+        </figure>
+        <figure>
+          <img src="./figures/why-chiplets-emerged/normalized_cost.png" alt="Normalized cost trend showing higher cost at newer process nodes" />
+          <figcaption>Figure 4. Newer nodes are increasingly expensive, raising the economic barrier for pure monolithic scaling.<sup>4</sup></figcaption>
+        </figure>
+      </div>
+      <div class="figure-grid">
+        <figure>
+          <img src="./figures/why-chiplets-emerged/yield.png" alt="Yield comparison indicating larger dies have lower yield and chiplet partitioning can help" />
+          <figcaption>Figure 5. Larger single dies tend to have lower yield; partitioning into chiplets can improve manufacturability.<sup>7</sup></figcaption>
+        </figure>
+        <figure>
+          <img src="./figures/why-chiplets-emerged/reticle_limit.png" alt="Reticle limit diagram constraining maximum monolithic die size" />
+          <figcaption>Figure 6. Reticle limits constrain how far monolithic die size can scale.<sup>4</sup></figcaption>
+        </figure>
+      </div>
 
-      <h2>Chiplets: a new integration layer</h2>
-      <p>Chiplets introduce another level in the system hierarchy. Instead of forcing all functions into one giant die, designers can partition functionality into smaller dies and integrate them inside one package.</p>
-      <p>This shifts scaling from only transistor-level progress to architecture-level and packaging-level progress.</p>
-      <p>You can think of modern system scaling as a multi-layer problem:</p>
+      <h2>Chiplet: a New Dimension of Scaling</h2>
+      <p><strong>What is chiplet technology?</strong></p>
+      <p>A chiplet-based design partitions a monolithic SoC into multiple smaller dies, each optimized for a specific role, then integrates them in one package through high-bandwidth die-to-die links so they operate as a single logical system.</p>
+      <p>From a microarchitecture perspective, this enables functional disaggregation: compute tiles, IO dies, cache or memory-adjacent dies, and accelerators can be developed and reused more independently.</p>
+      <p>This shifts scaling from transistor-only progress to co-optimization across manufacturing, packaging, and system-level integration.</p>
+
+      <p><strong>Advantages of chiplets</strong></p>
+      <p>Chiplet-based products offer several practical advantages:</p>
       <ul>
-        <li>On-die architecture</li>
-        <li>Package-level integration (chiplets)</li>
-        <li>Board or machine-level integration</li>
-        <li>Rack and cluster-level scaling</li>
+        <li>Higher effective yield by partitioning large dies into smaller known-good components</li>
+        <li>Reusable IP blocks and faster product-family iteration</li>
+        <li>Process-node matching so only critical blocks use leading-edge nodes</li>
+        <li>Better cost/performance tradeoffs across diverse market segments</li>
       </ul>
-      <p>Real performance growth comes from balancing all layers, not over-optimizing only one.</p>
+      <p>Accordingly, leading products across CPUs, GPUs, switching ASICs, and FPGAs increasingly adopt chiplet-oriented integration strategies.</p>
 
-      <h2>Why advanced packaging matters</h2>
-      <p>Chiplets are not just an architecture idea; they are enabled by packaging technology:</p>
+      <p><strong>Advanced packaging is the enabler</strong></p>
+      <p>Chiplets are not only an architecture concept; they are fundamentally enabled by packaging technology:</p>
       <ul>
-        <li>High-density die-to-die links</li>
-        <li>Better substrate and interposer capabilities</li>
-        <li>Improved integration methods for heterogeneous dies</li>
+        <li>High-density, low-energy die-to-die links</li>
+        <li>More capable substrates, bridges, and interposer technologies</li>
+        <li>Mature integration methods for heterogeneous process nodes and IP blocks</li>
       </ul>
-      <p>Advanced packaging makes it realistic to combine compute, IO, memory-related logic, and other functions from different process nodes in one package.</p>
+      <p>Advanced packaging makes it practical to combine compute, IO, and memory-adjacent logic from different process nodes in one package. This is a core reason chiplet products have become mainstream only in recent years.</p>
+
+      <figure>
+        <img src="./figures/why-chiplets-emerged/chiplet_yield.png" alt="Diagram illustrating what chiplet is, and how it improves yield" />
+        <figcaption>Figure 7. Chiplet assembles multiple smaller dies into a single package, allowing for reduced technology difficulties and higher yield.<sup>4</sup></figcaption>
+      </figure>
 
       <figure>
         <img src="./figures/why-chiplets-emerged/packaging.png" alt="Advanced packaging illustration for integrating multiple dies in one package" />
         <figcaption>Figure 8. Advanced packaging technologies make multi-die chiplet integration practical at product scale.<sup>8</sup></figcaption>
       </figure>
 
-      <p>That creates several advantages:</p>
+      <h2>Insights from the Networking Perspective</h2>
+      <p>To meet the requirements of modern and future AI training and inference, the computing infrastructure has to exhaust the scaling potential across all layers:</p>
       <ul>
-        <li>Better yield from smaller die sizes</li>
-        <li>More flexible design reuse across product lines</li>
-        <li>Process-node matching, so leading-edge silicon is used only where it matters most</li>
-        <li>Potentially better cost-performance tradeoffs</li>
+        <li>On-die architecture</li>
+        <li>Multi-die packaging</li>
+        <li>Board-, machine-, and rack-level integration</li>
+        <li>In-cluster scaling</li>
+        <li>Inter-cluster cooperation</li>
       </ul>
+      <p>At every level, data movement is the key bottleneck. This presents a wide range of optimization opportunities, covering:</p>
+      <ul>
+        <li>Networks on Chip (NoCs)</li>
+        <li>Networks in Package (NiPs)</li>
+        <li>Scale-Up Networks</li>
+        <li>Scale-Out Networks</li>
+        <li>Scale-Across Networks</li>
+      </ul>
+      <p>Real throughput gains come from balancing all layers rather than over-optimizing only one.</p>
+      <p style="color: var(--muted); font-style: italic;">A subjective point: we see strong potential in researching interconnects for chiplet-based switching chips. It not only involves optimization at the NoC and NiP levels, but can also bring more possibilities to higher-level network designs by enabling better network switches.</p>
+      <div class="callout">
+        <strong>Core Takeaway:</strong> 
+        <p>Chiplets do not replace process scaling; they reduce dependence on process scaling alone. Sustainable performance growth comes from joint innovation across manufacturing, packaging, and networking.</p>
+      </div>
 
-      <h2>The core takeaway</h2>
-      <p>Chiplets are not a replacement for process scaling. They are a response to the limits of relying on process scaling alone.</p>
-      <p>As AI and large-scale computing continue to grow, the winning strategy is increasingly clear: combine transistor innovation, architecture innovation, packaging innovation, and system-level co-design. Chiplets sit at the center of that transition.</p>
-
-      <p class="signature">Draft written by Yang Zhang and Xu Wang (2024/07/23)</p>
-      <p class="signature">Polished and formatted by GPT4.5 mini (2026/04/20)</p>
-      <p class="signature">Latest update (2026/04/20)</p>
+      <p class="signature">Draft written by Yang Zhang and Xu Wang (2024/07)</p>
+      <p class="signature">Polished and formatted by GPT-5.3-Codex (2026/04)</p>
+      <p class="signature">Latest update (2026/04)</p>
 
       
       <hr class="rule" />
@@ -209,7 +268,7 @@
         <li>Wong, H-S. Philip, R. Willard, and Inez Kerr Bell. "IC Technology-What Will the Next Node Offer Us?" 2019 IEEE Hot Chips 31 Symposium.</li>
         <li>Esmaeilzadeh, Hadi, et al. "Dark silicon and the end of multicore scaling." ISCA 2011.</li>
         <li><a href="https://en.wikichip.org/wiki/chiplet" target="_blank" rel="noopener">https://en.wikichip.org/wiki/chiplet</a></li>
-        <li>Raja Swaminathan, AMD, "Case Study: AMD products built with 3D packaging", Hot Chips 2021</a></li>
+        <li>Raja Swaminathan, AMD, "Case Study: AMD products built with 3D packaging", Hot Chips 2021.</li>
       </ol>
     </main>
   </body>
