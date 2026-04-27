@@ -299,13 +299,18 @@
     return output;
   }
 
-  function renderSingleArticle(container, article) {
+  function renderSingleArticle(container, article, index) {
     var card = document.createElement("article");
     card.className = "article-entry";
 
     var articleUrl = article.htmlPath || article.path || "#";
 
     var title = document.createElement("h2");
+    var indexLabel = document.createElement("span");
+    indexLabel.className = "article-index";
+    indexLabel.textContent = String(index + 1) + ". ";
+    title.appendChild(indexLabel);
+
     var titleLink = document.createElement("a");
     titleLink.href = articleUrl;
     titleLink.textContent = article.title || "Untitled Article";
@@ -335,8 +340,8 @@
       return;
     }
 
-    data.articles.forEach(function (article) {
-      renderSingleArticle(root, article);
+    data.articles.forEach(function (article, index) {
+      renderSingleArticle(root, article, index);
     });
   }
 
