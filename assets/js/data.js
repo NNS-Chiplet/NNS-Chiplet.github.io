@@ -67,7 +67,7 @@ window.SiteData = {
       {
         name: "Xu Wang",
         role: "PhD Student(2023-)",
-        url: "",
+        url: "https://wg-xu.github.io/",
         photo: "./assets/images/Xu_Wang.jpg"
       }
     ],
