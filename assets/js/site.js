@@ -40,9 +40,67 @@
     return span;
   }
 
+  function createInlineMarkdownFragment(text) {
+    var fragment = document.createDocumentFragment();
+    var source = String(text || "");
+    var pattern = /(\[[^\]]+\]\([^\s)]+\)|\*\*[^*]+\*\*|\*[^*]+\*|<u>[\s\S]*?<\/u>)/gi;
+    var lastIndex = 0;
+    var match;
+
+    function appendFormatted(parent, value) {
+      parent.appendChild(createInlineMarkdownFragment(value));
+    }
+
+    while ((match = pattern.exec(source)) !== null) {
+      if (match.index > lastIndex) {
+        fragment.appendChild(document.createTextNode(source.slice(lastIndex, match.index)));
+      }
+
+      var token = match[0];
+      if (token.slice(0, 2) === "**" && token.slice(-2) === "**") {
+        var strong = document.createElement("strong");
+        appendFormatted(strong, token.slice(2, -2));
+        fragment.appendChild(strong);
+      } else if (token.charAt(0) === "*" && token.slice(-1) === "*") {
+        var em = document.createElement("em");
+        appendFormatted(em, token.slice(1, -1));
+        fragment.appendChild(em);
+      } else if (token.slice(0, 3).toLowerCase() === "<u>" && token.slice(-4).toLowerCase() === "</u>") {
+        var underline = document.createElement("u");
+        appendFormatted(underline, token.slice(3, -4));
+        fragment.appendChild(underline);
+      } else {
+        var linkMatch = token.match(/^\[([^\]]+)\]\(([^\s)]+)\)$/);
+        if (linkMatch && isClickableUrl(linkMatch[2])) {
+          var link = document.createElement("a");
+          link.href = linkMatch[2].trim();
+          appendFormatted(link, linkMatch[1]);
+          fragment.appendChild(link);
+        } else {
+          fragment.appendChild(document.createTextNode(token));
+        }
+      }
+
+      lastIndex = pattern.lastIndex;
+    }
+
+    if (lastIndex < source.length) {
+      fragment.appendChild(document.createTextNode(source.slice(lastIndex)));
+    }
+
+    return fragment;
+  }
+
+  function createFormattedLinkOrText(text, href) {
+    var node = isClickableUrl(href) ? document.createElement("a") : document.createElement("span");
+    if (node.tagName === "A") node.href = href.trim();
+    node.appendChild(createInlineMarkdownFragment(text));
+    return node;
+  }
+
   function toListItemWithLink(itemText, href) {
     var li = document.createElement("li");
-    li.appendChild(createLinkOrText(itemText, href));
+    li.appendChild(createFormattedLinkOrText(itemText, href));
     return li;
   }
 
@@ -51,7 +109,7 @@
     if (!root || !Array.isArray(data.highlights)) return;
 
     data.highlights.forEach(function (h) {
-      root.appendChild(toListItemWithLink(h.title, h.url));
+      root.appendChild(toListItemWithLink(h.text, h.url));
     });
   }
 
@@ -61,14 +119,7 @@
 
     data.researchInterests.forEach(function (item) {
       var li = document.createElement("li");
-      var strong = document.createElement("strong");
-      strong.textContent = item.title;
-      li.appendChild(strong);
-
-      if (item.summary) {
-        li.appendChild(document.createTextNode(" - " + item.summary));
-      }
-
+      li.appendChild(createInlineMarkdownFragment(item.text));
       root.appendChild(li);
     });
   }
@@ -92,7 +143,7 @@
         var ul = document.createElement("ul");
         data.news[year].forEach(function (n) {
           var li = document.createElement("li");
-          li.textContent = n.text;
+          li.appendChild(createFormattedLinkOrText(n.text, n.url));
           ul.appendChild(li);
         });
 

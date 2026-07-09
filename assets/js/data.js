@@ -4,61 +4,50 @@ window.SiteData = {
     org: "Tsinghua University / Department of Computer Science and Technology",
     email: "zhang-y22@mails.tsinghua.edu.cn"
   },
+  // structured data for index page, including research interests, highlights, and news
+  // { text: "text", url: "url" }, supports simple markdown style: **bold**, *italic*, <u>underline</u>, [label](url)
   researchInterests: [
     {
-      title: "Interconnect Architectures for Chiplet Systems",
-      summary: "Topology, and underlying physical modeling/optimization"
+      text: "**Interconnect Architectures for Chiplet Systems** - Topology, and underlying physical modeling/optimization"
     },
     {
-      title: "Traffic Management for Chiplet Systems",
-      summary: "Routing, congestion detection/mitigation, traffic scheduling, etc."
+      text: "**Traffic Management for Chiplet Systems** - Routing, congestion detection/mitigation, traffic scheduling, etc."
     },
     {
-      title: "Buffer Management for Distributed Switching Chips",
-      summary: "Sharing and management of spatial discrete buffer resources."
+      text: "**Buffer Management for Distributed Switching Chips** - Sharing and management of spatial discrete buffer resources."
     },
     {
-      title: "Simulation, Modeling, and Benchmarking for Chiplet Systems",
-      summary: "Perspectives and tools for evaluating chiplet-based system design and optimization."
+      text: "**Simulation, Modeling, and Benchmarking for Chiplet Systems** - Perspectives and tools for evaluating chiplet-based system design and optimization."
     },
     {
-      title: "Wafer-scale Integration and 3D-Integration",
-      summary: "Possible evolutionary directions for future chips."
+      text: "**Wafer-scale Integration and 3D-Integration** - Possible evolutionary directions for future chips."
     }
   ],
   highlights: [
     {
-      title: "We're continously archiving our knowledge and insights on chiplet systems, refer to the Articles section for more details!",
+      text: "We're continously archiving our knowledge and insights on chiplet systems, refer to the **Articles** section for more details!",
       url: "articles.html"
     },
     {
-      title: "The open source of a Chiplet-specific Simulation Platform based on BookSim2.0 is on the way!",
+      text: "The open source of a *Chiplet-specific Simulation Platform* based on BookSim2.0 is on the way!",
       url: "#"
     },
     {
-      title: "Several works are in progress or submitted for review, covering nearly all aspects of our listed research interests. Stay tuned!",
+      text: "Several works are in progress or submitted for review, covering nearly all aspects of our listed research interests. Stay tuned!",
       url: "#"
-    },
-  ],
-  articles: [
-    {
-      title: "Chiplet: Scaling Beyond Monolithic Chips",
-      htmlPath: "./Articles/why-chiplets-emerged.html",
-      summary: "Why AI-era demand outpaces monolithic scaling, and how chiplet extend system-level growth."
-    },
-    {
-      title: "Chiplet Technology and Interconnection",
-      htmlPath: "./Articles/chiplet-and-interconnection.html",
-      summary: "A concise overview of chiplet technology, covering definitions, system overview, and interconnect technologies."
     },
   ],
   news: {
     "2026": [
       {
-        text: "Xu Wang's paper on buffer management accepted to DAC 2026.",
+        text: "[July 2026] Our paper about **NoC Congestion Management** accepted to **MICRO 2026**.",
+      },
+      {
+        text: "[March 2026] Our paper about **On-Chip Buffer Management** accepted to **DAC 2026**.",
       }
     ]
   },
+  // customizable-structured data for people, publications, and articles
   people: {
     faculty: [
       {
@@ -105,4 +94,18 @@ window.SiteData = {
       }
     ],
   },
+  articles: {
+    "chiplet": [
+      {
+        title: "Chiplet: Scaling Beyond Monolithic Chips",
+        htmlPath: "./Articles/why-chiplets-emerged.html",
+        summary: "Why AI-era demand outpaces monolithic scaling, and how chiplet extend system-level growth."
+      },
+      {
+        title: "Chiplet Technology and Interconnection",
+        htmlPath: "./Articles/chiplet-and-interconnection.html",
+        summary: "A concise overview of chiplet technology, covering definitions, system overview, and interconnect technologies."
+      },
+    ],
+  }
 };
