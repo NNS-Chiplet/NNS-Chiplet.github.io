@@ -61,12 +61,14 @@ window.SiteData = {
       {
         name: "Yang Zhang",
         role: "PhD Student(2022-)",
-        url: ""
+        url: "https://zhang12574.github.io/",
+        photo: "./assets/images/Yang_Zhang.jpg"
       },
       {
         name: "Xu Wang",
         role: "PhD Student(2023-)",
-        url: ""
+        url: "",
+        photo: "./assets/images/Xu_Wang.jpg"
       }
     ],
     alumni: [
@@ -74,6 +76,15 @@ window.SiteData = {
   },
   publications: {
     "2026": [
+      {
+        title: "Hermes: Architecting Congestion Management for Large-Scale NoCs",
+        authors: ["Yang Zhang", "Xu Wang", "Lei Xu", "Fengyuan Ren"],
+        venue: "MICRO 2026",
+        url: "",
+        pdf: "",
+        slides: "",
+        code: ""
+      },
       {
         title: "CrediX: A Credit-driven Distributed Buffer Management for Large-scale Switching Chips",
         authors: ["Xu Wang", "Yang Zhang", "Danfeng Shan", "Fengyuan Ren"],

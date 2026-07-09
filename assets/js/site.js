@@ -382,17 +382,63 @@
     container.appendChild(card);
   }
 
+  function formatArticleGroupTitle(key) {
+    var label = String(key || "").trim();
+    if (!label) return "Articles";
+    return label
+      .replace(/[._-]+/g, " ")
+      .replace(/\s+/g, " ")
+      .replace(/\b\w/g, function (ch) {
+        return ch.toUpperCase();
+      });
+  }
+
+  function renderArticleGroup(container, groupName, articles) {
+    if (!Array.isArray(articles) || articles.length === 0) return;
+
+    var section = document.createElement("section");
+    section.className = "article-group";
+
+    var title = document.createElement("h2");
+    title.textContent = formatArticleGroupTitle(groupName);
+    section.appendChild(title);
+
+    articles.forEach(function (article, index) {
+      renderSingleArticle(section, article, index);
+    });
+
+    container.appendChild(section);
+  }
+
   function renderArticles() {
     var root = byId("articles-container");
     if (!root) return;
 
-    if (!Array.isArray(data.articles) || data.articles.length === 0) {
+    if (!data.articles) {
       root.textContent = "No articles available yet.";
       return;
     }
 
-    data.articles.forEach(function (article, index) {
-      renderSingleArticle(root, article, index);
+    if (Array.isArray(data.articles)) {
+      if (data.articles.length === 0) {
+        root.textContent = "No articles available yet.";
+        return;
+      }
+
+      data.articles.forEach(function (article, index) {
+        renderSingleArticle(root, article, index);
+      });
+      return;
+    }
+
+    var groupNames = Object.keys(data.articles);
+    if (groupNames.length === 0) {
+      root.textContent = "No articles available yet.";
+      return;
+    }
+
+    groupNames.forEach(function (groupName) {
+      renderArticleGroup(root, groupName, data.articles[groupName]);
     });
   }
 
