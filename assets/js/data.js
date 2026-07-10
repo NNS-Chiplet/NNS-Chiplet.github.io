@@ -96,7 +96,7 @@ window.SiteData = {
       },
       {
         title: "Q-StaR: A Quasi-Static Routing Scheme for NoCs",
-        authors: ["Yang Zhang", "Xu Wang", "Fengyuan Ren"],
+        authors: ["Yang Zhang", "Yiren Zhao", "Xu Wang", "Fengyuan Ren"],
         venue: "Arxiv",
         url: "https://arxiv.org/abs/2603.10637",
         pdf: "",
